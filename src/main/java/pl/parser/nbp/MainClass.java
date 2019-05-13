@@ -8,7 +8,7 @@ public class MainClass {
 
     public static void main(String[] args) {
         if (args.length != 3) {
-            System.out.println("Podaj poprawne argumenty w postaci: \"<kod waluty> <data początkowa> <data końcowa>\"");
+            System.out.println("Podaj poprawne argumenty w postaci: \"KOD YYYY-MM-DD YYYY-MM-DD\"");
             return;
         }
 
@@ -16,11 +16,10 @@ public class MainClass {
         String startDate = args[1];
         String endDate = args[2];
 
-        List<Currency> rates = new ArrayList<Currency>();
-        rates.add(new Currency("euro", 1, "EUR", 4.1301, 4.2135));
-        rates.add(new Currency("euro", 1, "EUR", 4.1621, 4.2461));
-        rates.add(new Currency("euro", 1, "EUR", 4.1530, 4.2370));
-        rates.add(new Currency("euro", 1, "EUR", 4.1569, 4.2409));
+        // validate input
+
+        Parser parser = new Parser(currencyCode);
+        List<Currency> rates = parser.getRates(startDate, endDate);
 
         ArrayList<Double> buyRates = new ArrayList<Double>();
         ArrayList<Double> sellRates = new ArrayList<Double>();
